@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>TODO List</h1>
-    <todo-form></todo-form>
+    <todo-form @todo-added=addTodo></todo-form>
     <ul>
       <li v-for="item in todoItems" :key=item.id>
         <todo-item :label=item.label :done=item.done :id=item.id></todo-item>
@@ -29,23 +29,18 @@ export default {
           label: "hello world",
           done: true,
         },
-        {
-          id: uniqueId("todo-"),
-          label: "12 world",
-          done: false,
-        },
-        {
-          id: uniqueId("todo-"),
-          label: "23 world",
-          done: true,
-        },
-        {
-          id: uniqueId("todo-"),
-          label: "34 world",
-          done: false,
-        },
       ]
     }
+  },
+  methods: {
+    addTodo(todoLabel) {
+      console.log("addTodo", todoLabel)
+      this.todoItems.push({
+        id: uniqueId("todo-"),
+        label: todoLabel,
+        done: false,
+      })
+    },
   }
 }
 </script>
