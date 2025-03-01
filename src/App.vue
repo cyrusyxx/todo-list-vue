@@ -6,7 +6,7 @@
     <h2 id="list-summary">{{ listSummary }}</h2>
     <ul aria-labelledby="list-summary" class="stack-large">
       <li v-for="item in todoItems" :key=item.id>
-        <todo-item :label=item.label :done=item.done :id=item.id></todo-item>
+        <todo-item :label=item.label :done=item.done :id=item.id @checkbox-changed=updateDoneStatus(item.id)></todo-item>
       </li>
     </ul>
   </div>
@@ -43,6 +43,10 @@ export default {
         done: false,
       })
     },
+    updateDoneStatus(todoId) {
+      const todoToUpdate = this.todoItems.find((item) => item.id === todoId)
+      todoToUpdate.done = !todoToUpdate.done
+    }
   },
   computed: {
     // 计算属性
