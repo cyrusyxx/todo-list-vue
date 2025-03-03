@@ -29,7 +29,7 @@ export default {
         {
           id: uniqueId("todo-"),
           label: "hello world",
-          done: true,
+          done: false,
         },
       ]
     }
